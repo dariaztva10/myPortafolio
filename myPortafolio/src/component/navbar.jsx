@@ -6,20 +6,20 @@ export const Navbar = () => {
     return (
         <nav className="navbar-general">
             <div className="container">
-                <Link to="/" className="navbar-brand">
-                    Inicio
-                </Link>
-                <div className="ml-auto">
-                    <Link to="/skills">
-                        <button className="botonesNavbar">Habilidades</button>
-                    </Link>
-                    <Link to="/projects">
-                        <button className="botonesNavbar">Proyectos</button>
-                    </Link>
-                    <Link to="/contact">
-                        <button className="botonesNavbar">Contacto</button>
-                    </Link>
-                </div>
+                <Link to="/" className="navbar-brand">Inicio</Link>
+
+                {/* Este input controla el estado del menú */}
+                <input type="checkbox" id="menu-toggle" className="menu-toggle" />
+                
+                {/* El label con el ícono del menú */}
+                <label htmlFor="menu-toggle" className="menu-icon">☰</label>
+
+                {/* El menú de enlaces */}
+                <ul className="nav-links">
+                    <li><Link to="/skills" className="nav-button">Habilidades</Link></li>
+                    <li><Link to="/projects" className="nav-button">Proyectos</Link></li>
+                    <li><Link to="/contact" className="nav-button">Contacto</Link></li>
+                </ul>
             </div>
         </nav>
     );
