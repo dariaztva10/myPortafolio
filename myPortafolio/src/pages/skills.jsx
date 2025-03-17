@@ -1,6 +1,6 @@
 import React from "react";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaPython, FaDatabase, FaFigma } from "react-icons/fa";
-import { SiFlask, SiBootstrap, SiJsonwebtokens, SiJest, SiPostgresql } from "react-icons/si";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaPython, FaDatabase } from "react-icons/fa";
+import { SiFlask, SiBootstrap, SiJsonwebtokens, SiJest, SiPostgresql, SiVite } from "react-icons/si";
 import "/Users/daria/Desktop/myPortafolio/myPortafolio/src/styles/skills.css";
 
 export const Skills = () => {
@@ -17,7 +17,7 @@ export const Skills = () => {
         { name: "Flask", icon: <SiFlask className="icon flask" /> },
         { name: "Bootstrap", icon: <SiBootstrap className="icon bootstrap" /> },
         { name: "PostgreSQL", icon: <SiPostgresql className="icon postgres" /> },
-        { name: "Figma", icon: <FaFigma className="icon figma" /> },
+        { name: "Vite", icon: <SiVite className="icon vite" /> },
         // { name: "Visual Studio Code", icon: <SiVisualstudiocode className="icon vscode" /> },
         { name: "Jest", icon: <SiJest className="icon jest" /> },
         { name: "JWT", icon: <SiJsonwebtokens className="icon jwt" /> },
