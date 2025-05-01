@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import "/Users/daria/Desktop/myPortafolio/myPortafolio/src/styles/contact.css";
+import "../styles/contact.css";                     // ruta relativa
+import emailjs from "@emailjs/browser";            // importa EmailJS
 
 export const Contact = () => {
-    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    // ojo: usa user_name/user_email para coincidir con tu plantilla
+    const [formData, setFormData] = useState({ user_name: "", user_email: "", message: "" });
     const [status, setStatus] = useState(""); // Para mostrar mensajes de estado
 
     const handleChange = (e) => {
@@ -13,22 +15,24 @@ export const Contact = () => {
         e.preventDefault();
         setStatus("Enviando...");
 
-        try {
-            const response = await fetch("http://localhost:3001/send-email", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
 
-            const data = await response.json();
-            if (response.ok) {
-                setStatus("Correo enviado con éxito 🎉");
-                setFormData({ name: "", email: "", message: "" });
-            } else {
-                setStatus(data.error || "Error al enviar el correo");
-            }
-        } catch (error) {
-            setStatus("Error al conectar con el servidor");
+        try {
+            // 👇 envía directamente usando tu Service ID y Template ID
+            await emailjs.send(
+                "service_lc0cc9f",   // tu Service ID
+                "template_ygh6kii",             // tu Template ID
+                {
+                    user_name: formData.user_name,
+                    user_email: formData.user_email,
+                    message: formData.message,
+                }
+                // no pasamos la Public Key aquí, ya la inicializamos en App.jsx
+            );
+            setStatus("Correo enviado con éxito 🎉");
+            setFormData({ user_name: "", user_email: "", message: "" });
+        } catch (err) {
+            console.error("EmailJS error:", err.status, err.text);
+            setStatus("Error al enviar. Revisa la consola.");
         }
     };
 
@@ -39,19 +43,21 @@ export const Contact = () => {
                 <p>¿Quieres hablar conmigo? Rellena el formulario y estaré encantada de responderte.</p>
 
                 <form onSubmit={handleSubmit} className="contact-form">
+
                     <input
                         type="text"
-                        name="name"
+                        name="user_name"
                         placeholder="Tu nombre"
-                        value={formData.name}
+                        value={formData.user_name}
                         onChange={handleChange}
                         required
                     />
+
                     <input
                         type="email"
-                        name="email"
+                        name="user_email"
                         placeholder="Tu email"
-                        value={formData.email}
+                        value={formData.user_email}
                         onChange={handleChange}
                         required
                     />
